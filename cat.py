@@ -4,8 +4,10 @@ This program prints stdin to the screen.
 import sys
 
 def cat(file):
-    data = file.read()
-    sys.stdout.buffer.write(data)
+    data = file.read(1024)
+    while data:
+        sys.stdout.buffer.write(data)
+        data = file.read(1024)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
